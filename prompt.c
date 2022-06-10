@@ -1,19 +1,23 @@
 #include "shell.h"
 
 /**
- * prompt - get input
- *
- * Return: void
+ * read_line - reads the command line
+ * Return: line
  */
 
-void prompt(void)
+char *read_line(void)
 {
 	char *line = NULL;
-	size_t len = 0;
-	ssize_t line_size = 0;
+	size_t size = 0;
+	int ret = 0;
 
-	write(1, "#cisfun$ ", 9);
-	line_size = getline(&line, &len, stdin);
+	if (getline(&line, &size, stdin) == -1)
+	{
+		free(line);
+		exit(-1);
+	}
+	ret = strlen(line);
+	line[ret - 1] = '\0';
 
-	read_cmd(line, line_size - 1);
+	return (line);
 }
