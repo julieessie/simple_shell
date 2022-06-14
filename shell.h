@@ -20,6 +20,7 @@ char **splits(char *line, char *delim);
 int execute(char **parse);
 void _puts(char *str);
 int _putchar(char c);
+void file_path(char **argv, char *cmd, ssize_t line_size)
 unsigned int _strlen(char *s);
 char **find_path(char **environ);
 char *_getenv(char **environ, char *dirname);
