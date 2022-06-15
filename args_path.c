@@ -9,16 +9,16 @@
 
 char *_strcat(char *dest, char *src)
 {
-	int i, j;
+int i, j;
 
-	for (i = 0; dest[i] != '\0'; i++)
-	{ }
+for (i = 0; dest[i] != '\0'; i++)
+{ }
 
-	for (j = 0; src[j] != '\0'; j++, i++)
-		dest[i] = src[j];
+for (j = 0; src[j] != '\0'; j++, i++)
+dest[i] = src[j];
 
-	dest[i] = '\0';
-	return (dest);
+dest[i] = '\0';
+return (dest);
 }
 
 /**
@@ -30,31 +30,31 @@ char *_strcat(char *dest, char *src)
 
 char *args_path(char **parse, char **new)
 {
-	char *total, **cat;
-	int i, j, k;
-	struct stat status;
+char *total, **cat;
+int i, j, k;
+struct stat status;
 
-	for (i = 0; new[i]; i++)
-	{
-		total = malloc(60);
-		_strcat(total, new[i]);
-		_strcat(total, "/");
-		_strcat(total, parse[0]);
+for (i = 0; new[i]; i++)
+{
+total = malloc(60);
+_strcat(total, new[i]);
+_strcat(total, "/");
+_strcat(total, parse[0]);
 
-		if (stat(total, &status) == 0)
-		{
-			for (k = 0; parse[k] != '\0'; k++)
-				;
-			cat = malloc(sizeof(char *) * (k + 1));
-			cat[k] = NULL;
-			cat[0] = _strdup(total);
+if (stat(total, &status) == 0)
+{
+for (k = 0; parse[k] != '\0'; k++)
+;
+cat = malloc(sizeof(char *) * (k + 1));
+cat[k] = NULL;
+cat[0] = _strdup(total);
 
-			for (j = 1; parse[j]; j++)
-				cat[j] = _strdup(parse[j]);
-			execute(cat);
-			return (total);
-		}
-		free(total);
-	}
-	return (NULL);
+for (j = 1; parse[j]; j++)
+cat[j] = _strdup(parse[j]);
+execute(cat);
+return (total);
+}
+free(total);
+}
+return (NULL);
 }
