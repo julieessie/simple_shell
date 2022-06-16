@@ -1,14 +1,34 @@
 #include "shell.h"
+
 /**
- * set_bit - sets the value of a bit to 1 at a given index
- * @n:  pointer to number
- * @index: index that starts from zero
- * Return: 1 if successful, -1 otherwise
+ * main - principal function
+ * @argc: is an int
+ * @argv: is a char
+ * @environ: global variable
+ * Return: 0
  */
-int set_bit(unsigned long int *n, unsigned int index)
+
+int main(int argc, char **argv, char **environ)
 {
-if (index > 63)
-return (-1);
-*n = ((1UL << index) | *n);
-return (1);
+char *line = NULL;
+char *delim = "\t \a\n";
+char *command;
+char **tokens;
+(void)argc;
+
+tokens = find_path(environ);
+
+signal(SIGINT, SIG_IGN);
+while (1)
+{
+line = read_line();
+argv = token(line, delim);
+command = args_path(argv, tokens);
+if (command == NULL)
+execute(argv);
+free(line);
+free(argv);
+free(command);
+}
+return (0);
 }
