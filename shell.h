@@ -12,9 +12,9 @@
 
 #define EXIT_HELP "exit [STATUS]"
 #define EXIT_DESC\
-  "Exit the shell with a status of STATUS.\n\0"\
-  "If STATUS is omitted, the exit status is that of the last command.\0"\
-  "\0"
+"Exit the shell with a status of STATUS.\n\0"\
+"If STATUS is omitted, the exit status is that of the last command.\0"\
+"\0"
 char *read_line(void);
 char **splits(char *line, char *delim);
 int execute(char **parse);
